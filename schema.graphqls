@@ -1,0 +1,11 @@
+type Test {
+    id: ID
+}
+
+type Query {
+    test: [Test]
+}
+
+schema {
+    query: Query
+}
