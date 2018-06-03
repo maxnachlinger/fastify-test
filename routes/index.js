@@ -10,14 +10,14 @@ const schema = makeExecutableSchema({typeDefs, resolvers})
 const routes = async (fastify, options) => {
   fastify.register(graphqlFastify, {
     prefix: '/graphql',
-    graphql: {
+    graphql: (request) => ({
       schema,
-      context: (request) => ({
+      context: () => ({
         request,
         logFunction: fastify.log,
         logger: fastify.log
       })
-    },
+    }),
   })
 
   fastify.register(graphiqlFastify, {
